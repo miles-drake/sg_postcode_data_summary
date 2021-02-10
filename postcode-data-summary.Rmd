@@ -1,0 +1,48 @@
+---
+title: "Postcode Data Summary Statistics"
+date: "10/02/2021"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include = FALSE}
+library(knitr)
+source("postcode-data-summary-statistics.R")
+```
+
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
+<script src="http://code.jquery.com/jquery-2.1.2.min.js"></script>
+<script src="http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("table").DataTable();
+  } );
+</script>
+
+## Table of Changed Values Only
+
+```{r echo = FALSE, result = "asis"}
+df_diff %>% kable()
+```
+
+### Comments
+
+There are ``r df_diff[[1]] %>% length()`` changed values.
+
+There are ``r data_sets[[1]]$data$pivot_long[[3]] %>% unique() %>% length()`` unique values in data set one, and ``r data_sets[[2]]$data$pivot_long[[3]] %>% unique() %>% length()`` unique values in data set two.
+
+There have been no values that have become `NA` or have changed data type.
+
+## Note
+
+If there are any statistics you would like, it won't take long to derive them from this point on.
+
+## Complete Table of Comparisons
+
+```{r}
+df_join %>% kable()
+```
